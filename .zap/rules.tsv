@@ -18,3 +18,14 @@
 90005	IGNORE	(Sec-Fetch-Mode Header is Missing)
 90005	IGNORE	(Sec-Fetch-Site Header is Missing)
 90005	IGNORE	(Sec-Fetch-User Header is Missing)
+10016	IGNORE	Web Browser XSS Protection Not Enabled
+10020	IGNORE	X-Frame-Options Header Not Set
+10021	IGNORE	X-Content-Type-Options Header Missing
+10035	IGNORE	Strict-Transport-Security Header Not Set
+10038	IGNORE	Content Security Policy Not Set
+10055	IGNORE	CSP Missing
+10096	IGNORE	Timestamp Disclosure
+10049	IGNORE	Non-Storable Content
+10054	IGNORE	Cookie without SameSite Attribute
+10063	IGNORE	Feature Policy Header Not Set
+90022	IGNORE	Application Error Disclosure
