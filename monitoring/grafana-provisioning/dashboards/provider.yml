@@ -1,0 +1,12 @@
+# monitoring/grafana-provisioning/dashboards/provider.yml
+
+apiVersion: 1
+providers:
+  - name: juice-shop
+    orgId: 1
+    folder: Juice Shop
+    type: file
+    disableDeletion: true
+    updateIntervalSeconds: 30
+    options:
+      path: /etc/grafana/provisioning/dashboards

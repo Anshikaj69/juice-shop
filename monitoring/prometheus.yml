@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'juice-shop'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['juice-shop:3000']
