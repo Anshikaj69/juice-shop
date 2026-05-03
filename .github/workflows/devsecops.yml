@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      actions: write 
 
     steps:
       - name: Checkout code
@@ -58,6 +59,7 @@ jobs:
           cmd_options: ''
           fail_action: true
           allow_issue_writing: false
+          artifact_name: zap_report
 
       - name: Upload ZAP security report
         uses: actions/upload-artifact@v4
