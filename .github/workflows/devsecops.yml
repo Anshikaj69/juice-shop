@@ -11,7 +11,7 @@ jobs:
     name: Build, Containerize & Security Scan
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       actions: write 
 
     steps:
@@ -64,6 +64,29 @@ jobs:
       - name: Stop container
         if: always()
         run: docker stop juice-shop || true
+
+  promote-to-master:
+    name: Promote dev to master
+    runs-on: ubuntu-latest
+    needs: build-and-scan
+    if: github.ref == 'refs/heads/dev' && github.event_name == 'push'   # only after dev passes
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge dev into master
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git checkout master
+          git merge origin/dev --ff-only
+          git push origin master
 
   deploy-production:
     name: Deploy to Production
