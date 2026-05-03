@@ -1,39 +1,13 @@
-# Juice Shop known intentional vulnerabilities - suppress these
+# .zap/rules.tsv
 # Format: alertId [TAB] IGNORE [TAB] reason
-# HIGH alerts are NOT suppressed - those still fail the pipeline
+# These are ALL the alerts from your actual scan output
+# HIGH severity alerts are NOT suppressed - they still fail the pipeline
 
-# Missing security headers (intentional in Juice Shop)
-10016	IGNORE	Web Browser XSS Protection Not Enabled
-10017	IGNORE	Cross-Domain JavaScript Source File Inclusion
-10019	IGNORE	Content-Type Header Missing
-10020	IGNORE	X-Frame-Options Header Not Set
-10021	IGNORE	X-Content-Type-Options Header Missing
-10023	IGNORE	Information Disclosure - Debug Error Messages
-10024	IGNORE	Information Disclosure - Sensitive Information in URL
-10025	IGNORE	Information Disclosure - Sensitive Information in HTTP Referrer Header
-10027	IGNORE	Information Disclosure - Suspicious Comments
-10035	IGNORE	Strict-Transport-Security Header Not Set
-10036	IGNORE	Server Leaks Version Information via Server HTTP Response Header Field
-10037	IGNORE	Server Leaks Information via X-Powered-By HTTP Response Header Field(s)
-10038	IGNORE	Content Security Policy (CSP) Header Not Set
-10039	IGNORE	X-Backend-Server Header Information Leak
-10040	IGNORE	Secure Pages Include Mixed Content
-10049	IGNORE	Non-Storable Content
-10050	IGNORE	Retrieved from Cache
-10054	IGNORE	Cookie Without SameSite Attribute
-10055	IGNORE	CSP Scanner: Wildcard Directive
-10056	IGNORE	X-Debug-Token Information Leak
-10063	IGNORE	Permissions Policy Header Not Set
-10094	IGNORE	Base64 Disclosure
-10096	IGNORE	Timestamp Disclosure - Unix
-10097	IGNORE	Hash Disclosure
-10098	IGNORE	Cross-Domain Misconfiguration
-10109	IGNORE	Modern Web Application
-10110	IGNORE	Dangerous JS Functions
-10202	IGNORE	Absence of Anti-CSRF Tokens
-90001	IGNORE	Insecure JSF ViewState
-90003	IGNORE	Sub Resource Integrity Attribute Missing
-90011	IGNORE	Charset Mismatch
-90022	IGNORE	Application Error Disclosure
-90033	IGNORE	Loosely Scoped Cookie
-90034	IGNORE	Cloud Metadata Potentially Exposed
+10038	IGNORE	CSP Header Not Set - intentional in Juice Shop training app
+10049	IGNORE	Storable and Cacheable Content - static assets, expected
+10063	IGNORE	Deprecated Feature Policy Header - shipped by Juice Shop intentionally
+10096	IGNORE	Timestamp Disclosure Unix - build timestamps in JS bundles
+10098	IGNORE	Cross-Domain Misconfiguration - CORS open by design for training
+10109	IGNORE	Modern Web Application - informational ZAP detection of Angular SPA
+10110	IGNORE	Dangerous JS Functions - eval in Angular build, intentional
+90004	IGNORE	COEP Header Missing - not required for this application type
