@@ -1,13 +1,8 @@
-# .zap/rules.tsv
-# Format: alertId [TAB] IGNORE [TAB] reason
-# These are ALL the alerts from your actual scan output
-# HIGH severity alerts are NOT suppressed - they still fail the pipeline
-
 10038	IGNORE	CSP Header Not Set - intentional in Juice Shop training app
-10049	IGNORE	Storable and Cacheable Content - static assets, expected
+10049	IGNORE	Storable and Cacheable Content - static assets expected
 10063	IGNORE	Deprecated Feature Policy Header - shipped by Juice Shop intentionally
 10096	IGNORE	Timestamp Disclosure Unix - build timestamps in JS bundles
 10098	IGNORE	Cross-Domain Misconfiguration - CORS open by design for training
 10109	IGNORE	Modern Web Application - informational ZAP detection of Angular SPA
-10110	IGNORE	Dangerous JS Functions - eval in Angular build, intentional
+10110	IGNORE	Dangerous JS Functions - eval in Angular build intentional
 90004	IGNORE	COEP Header Missing - not required for this application type

@@ -35,8 +35,7 @@ jobs:
         continue-on-error: true
 
       - name: Build Docker image
-        run: |
-          docker build -t juice-shop:${{ github.sha }} .
+        run: docker build -t juice-shop:${{ github.sha }} .
 
       - name: Start application container
         run: |
@@ -45,20 +44,17 @@ jobs:
             -e NODE_ENV=production \
             juice-shop:${{ github.sha }}
           echo "Waiting for app to start..."
-          timeout 120 bash -c \
-            'until curl -sf http://localhost:3000; do sleep 5; done'
+          timeout 120 bash -c 'until curl -sf http://localhost:3000; do sleep 5; done'
           echo "App is up"
 
-      - name: Prepare ZAP workspace
-        run: |
-          chmod 777 ${{ github.workspace }}
-          cp .zap/rules.tsv /tmp/rules.tsv
+      - name: Fix workspace permissions for ZAP
+        run: chmod 777 ${{ github.workspace }}
 
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
           target: 'http://localhost:3000'
-          rules_file_name: '/tmp/rules.tsv'
+          rules_file_name: '.zap/rules.tsv'
           cmd_options: ''
           fail_action: true
           allow_issue_writing: false
