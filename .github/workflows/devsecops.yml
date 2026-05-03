@@ -61,14 +61,6 @@ jobs:
           allow_issue_writing: false
           artifact_name: zap_report
 
-      - name: Upload ZAP security report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: zap_report
-          path: report_html.html
-          retention-days: 30
-
       - name: Stop container
         if: always()
         run: docker stop juice-shop || true
